@@ -1,0 +1,194 @@
+"settings find_symbol blank_lines remapping comment register Tkinter_snippets
+"blank_lines add_function ydd_to_funtion file start_vim
+"Color_theme_adjusted_koehler
+
+"settings
+autocmd BufWinEnter *.* silent loadview
+let mapleader = "\<tab>" 
+set path=$PWD/**
+set shortmess=A 
+set si
+set ai
+set number
+set pastetoggle=<leader>\
+set cursorline
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set textwidth=80
+set smarttab
+set expandtab
+filetype plugin indent on
+syntax on
+"let g:pymode_python = 'python3'
+
+"find_symbol
+nmap [ /[<cr>lzz
+nmap <leader>[ v /]<cr>hzz
+vmap [ vllzz
+noremap <leader>9 /(<cr>lzz
+noremap <leader>99 v /)<cr>hzz
+vnoremap 9 vllzz
+
+noremap ' /'<cr>lzz
+noremap <leader>' v /'<cr>hzz
+vnoremap ' vllzz
+
+nnoremap { /{<cr>lzz
+nnoremap {{ v /}<cr>hzz
+vnoremap { vllzz
+
+nnoremap " /"<cr>lzz
+nnoremap "" v/"<cr>hzz
+vnoremap " vllzz
+ 
+nnoremap < /<<cr>lzz
+nnoremap << v/><cr>hzz
+    
+noremap <leader>, /,<cr>lzz
+noremap <leader>= /=<cr> zz
+noremap <leader>. /\.<cr>lzz
+noremap <leader>/ /\/<cr>lzz
+
+noremap <leader>v v0
+
+"blank_lines
+nmap <leader>j o<cr> 
+nmap <leader>k <s-o><cr> 
+ 
+"remapping 
+nnoremap v <c-v>
+noremap <a-k> <s-o><return>
+noremap = {zz
+noremap - }zz
+noremap n nzz
+noremap <c-return> o
+noremap <a-2> "2$p
+noremap <F6> :w! <bar> :!python % <CR>
+noremap <F2> *<s-n> <bar> :set hlsearch<CR>n
+noremap <return> mpi
+noremap ; :
+nmap <c-e> :mkview<cr>:wq!<CR>
+ 
+inoremap <silent><Return> <ESC>:nohlsearch<CR>
+inoremap <c-cr> <CR>
+imap! <F6> :w! <bar> :!python % <CR> 
+imap <a-return> <return>
+nmap <silent> <Space> :set relativenumber!<cr>
+
+vmap <return> <s-i>
+
+"comment 
+vmap 3 <cr><cr>0v-k
+vmap 33 <return>#<return><s-v>-kzf
+
+"register 
+nnoremap <leader>y "yyiw
+inoremap <leader>y <c-R>y
+nnoremap]y i<c-R>y<Esc>
+vnoremap ]y "yp
+vnoremap y "yy
+
+nnoremap <leader>u "uyiw
+inoremap <leader>u <c-R>u
+nnoremap ]u i<c-R>u<Esc>
+vnoremap ]u "up
+vnoremap u "uy
+
+nnoremap <leader>i "iyiw
+inoremap <leader>i <c-R>i
+nnoremap ]i i<c-R>i<Esc>
+vnoremap ]i "ip
+vnoremap i "iy
+
+nnoremap <leader>o "oyiw
+inoremap <leader>o <c-R>o
+nnoremap ]o i<c-R>o<Esc> 
+vnoremap ]o "op
+vnoremap o "oy
+
+nnoremap <leader>p "pyiw
+inoremap <leader>p <c-R>p
+nnoremap ]p i<c-R>p
+vnoremap ]p "pp 
+vnoremap p "py
+
+imap <leader>h <Left>
+imap <leader>k <Up>
+imap <leader>j <Down>
+imap <leader>l <Right>
+imap <leader>x <Delete>
+
+"add_function
+imap <leader>, <Right>, 
+imap <leader>9 ()<Left>
+imap <leader>0 ("")<Left><Left>
+imap <leader>[ []<Left>;
+imap <leader>] [""]<Left><Left>
+imap <leader>' ""<Left>
+
+nmap <leader>2 (>-
+nmap <leader>q :call ()<Left><Left>
+nmap <leader>3 0<cr>#<cr>
+nmap <leader>w :w! /python2.7_projects/
+nmap <c-v> v$
+
+nnoremap <leader>r _"rywo<c-R>r
+
+
+cmap <c-v> <Down>
+cmap <c-c> <Up>
+cmap <c-x> <Delete>
+
+"ydd_to_funtion 
+vnoremap ) )k 
+nnoremap ) )k
+nnoremap ( (jk
+    
+"file 
+nmap <c-b> :w! <bar> :b#<cr>
+
+"start_vim
+source ~/.vim/tkinter.vim
+loadview
+find test.py
+find test.kv
+b1
+"exec 'set viminfo=%,' . &viminfo
+
+"Color_theme_adjusted_koehler 
+hi Normal		  guifg=white  guibg=black
+hi Variable       term=bold  cterm=bold  ctermfg=cyan  guifg=cyan
+hi Scrollbar	  guifg=darkcyan guibg=cyan
+hi Menu			  guifg=black guibg=cyan
+hi SpecialKey	  term=bold  cterm=bold  ctermfg=darkred  guifg=Blue
+hi NonText		  term=bold  cterm=bold  ctermfg=darkred  gui=bold	guifg=Blue
+hi Directory	  term=bold  cterm=bold  ctermfg=brown	guifg=Blue
+hi ErrorMsg		  term=standout  cterm=bold  ctermfg=grey  ctermbg=blue  guifg=White  guibg=Red
+hi Search		  term=bold	ctermfg=white  ctermbg=red	guifg=white  guibg=Red
+hi MoreMsg		  term=bold  cterm=bold  ctermfg=darkgreen	gui=bold  guifg=SeaGreen
+hi ModeMsg		  term=bold  cterm=bold  gui=bold  guifg=White	guibg=Blue
+hi LineNr		  term=underline  cterm=bold  ctermfg=darkcyan	guifg=Yellow
+hi Question		  term=standout  cterm=bold  ctermfg=darkgreen	gui=bold  guifg=Green
+hi StatusLine	  term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=white gui=bold guifg=blue guibg=white
+hi StatusLineNC   term=reverse	ctermfg=white ctermbg=lightblue guifg=white guibg=blue
+hi Title		  term=bold  cterm=bold  ctermfg=darkmagenta  gui=bold	guifg=Magenta
+hi Visual		  term=reverse	cterm=reverse  gui=reverse
+hi WarningMsg	  term=standout  cterm=bold  ctermfg=darkblue  guifg=Red
+hi Cursor		  guifg=bg	guibg=Green
+hi Comment		  term=bold  cterm=bold ctermfg=darkred  guifg=#80a0ff
+hi Constant		  term=underline  cterm=bold ctermfg=magenta  guifg=#ffa0a0
+hi Special		  term=bold  cterm=underline ctermfg=red  guifg=Orange
+hi Identifier	  term=underline   ctermfg=blue  guifg=#40ffff
+hi Statement	  term=bold  cterm=bold ctermfg=yellow	gui=bold  guifg=#ffff60
+hi PreProc		  term=underline  ctermfg=lightgreen	guifg=#ff80ff
+hi Type			  term=underline  cterm=bold ctermfg=lightgreen  gui=bold  guifg=#60ff60
+hi Error		  term=standout  ctermfg=red  ctermbg=black  guifg=Red	guibg=Black
+hi Todo			  term=standout  ctermfg=black	ctermbg=darkcyan  guifg=Blue  guibg=Yellow
+
+"python colors
+hi PythonSync	  ctermfg=grey
+hi PythonSpaceError       ctermbg=blue 
+hi PythonFunction ctermfg=green term=underline
+hi PythonInclude  ctermfg=blue
+hi PythonStatement        cterm=bold ctermfg=cyan
