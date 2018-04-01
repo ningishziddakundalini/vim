@@ -12,7 +12,7 @@ fu KivyName(name)
     execute 'b! main.kv'
     execute 'w!' .  a:name . ".kv"
 endfu
-"
+
 "import kivy
 fu Kivy()
     put = 'from kivy.app import App'
