@@ -17,15 +17,15 @@ endfu
 fu Kivy()
     put = 'from kivy.app import App'
     put = 'from kivy.uix.boxlayout import BoxLayout'
-    put = 'class file_name(BoxLayout):'
+    put = 'class box(BoxLayout):'
     put = '    pass'
     put = ''
-    put = 'class App(App):'
+    put = 'class test(App):'
     put = '    def build(self):'
     put = '        pass'
     put = '        #return file_name()'
     put = '' 
     put = 'if __name__ == \"__main__\":' 
-    put = '    App().run()'
+    put = '    test().run()'
 endfu
 
