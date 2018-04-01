@@ -135,7 +135,6 @@ nmap <c-v> v$
 
 nnoremap <leader>r _"rywo<c-R>r
 
-
 cmap <c-v> <Down>
 cmap <c-c> <Up>
 cmap <c-x> <Delete>
