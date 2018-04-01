@@ -1,11 +1,16 @@
 "save kv and py file
-fu KivyName(arg)
+fu Kivyhelp()
+    echo 'KivyName(name) #saves current files as name.py and name.kv'
+    echo 'Kivy() #imports basic kivy classes and sets up a basic class'
+endfu
+
+fu KivyName(name)
     execute 'b! main.py'
-    execute 'w!' .  a:arg . ".py"
+    execute 'w!' .  a:name . ".py"
     redraw
     sleep 100m
     execute 'b! main.kv'
-    execute 'w!' .  a:arg . ".kv"
+    execute 'w!' .  a:name . ".kv"
 endfu
 "
 "import kivy

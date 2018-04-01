@@ -3,6 +3,7 @@
 "Color_theme_adjusted_koehler
 
 "settings
+autocmd VimEnter * echo "got a source from kivy.vim :call Kivyhelp() for more info"
 autocmd BufWinEnter *.* silent loadview
 let mapleader = "\<tab>" 
 set path=$PWD/**
@@ -148,7 +149,9 @@ nnoremap ( (jk
 nmap <c-b> :w! <bar> :b#<cr>
 
 "start_vim
-source ~/.vim/tkinter.vim
+source ~/vim/tkinter.vim
+source ~/vim/kivy.vim
+echo 'got a source from kivy.vim :call Kivyhelp() for more info'
 loadview
 find test.py
 find test.kv
