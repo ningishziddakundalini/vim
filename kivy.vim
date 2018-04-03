@@ -5,12 +5,19 @@ fu Kivyhelp()
 endfu
 
 fu KivyName(name)
+    execute '%s/\<main\>/' .  a:name . "/g"
     execute 'b! main.py'
-    execute 'w!' .  a:name . ".py"
+    execute 'w! python2.7_projects/' .  a:name . ".py"
     redraw
     sleep 100m
     execute 'b! main.kv'
-    execute 'w!' .  a:name . ".kv"
+    execute 'w! python2.7_projects/' .  a:name . ".kv"
+    redraw
+    sleep 100m
+    execute 'b! main.py'
+    redraw
+    sleep 100m
+    normal u
 endfu
 
 "import kivy
@@ -20,12 +27,12 @@ fu Kivy()
     put = 'class box(BoxLayout):'
     put = '    pass'
     put = ''
-    put = 'class test(App):'
+    put = 'class main(App):'
     put = '    def build(self):'
     put = '        pass'
-    put = '        #return file_name()'
+    put = '        #return BoxLayout()'
     put = '' 
     put = 'if __name__ == \"__main__\":' 
-    put = '    test().run()'
+    put = '    main().run()'
 endfu
 
