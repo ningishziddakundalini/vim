@@ -1,13 +1,18 @@
-"settings find_symbol blank_lines remapping comment register Tkinter_snippets
-"blank_lines add_function ydd_to_funtion file start_vim
-"Color_theme_adjusted_koehler
+"Configuration 
 
-"settings
-autocmd VimEnter * echo "got a source from kivy.vim :call Kivyhelp() for more info"
-autocmd BufWinEnter *.* silent loadview
+"autocmd BufWinEnter *.* silent loadview
+autocmd VimEnter *.* silent loadview
+
+syn sync fromstart
+syntax on
 let mapleader = "\<tab>" 
-set path=$PWD/**
-set shortmess=A 
+filetype plugin indent on
+set shortmess=a 
+set cmdheight=2
+set viewdir=$HOME/vim//
+set noswapfile
+set nocompatible
+set complete-=t
 set si
 set ai
 set number
@@ -19,46 +24,38 @@ set shiftwidth=4
 set textwidth=80
 set smarttab
 set expandtab
-filetype plugin indent on
-syntax on
-"let g:pymode_python = 'python3'
+"set path=$PWD/**
+"autocmd VimEnter * echo "got a source from kivy.vim :call Kivyhelp() for more info"
 
-"find_symbol
-nmap [ /[<cr>lzz
-nmap <leader>[ v /]<cr>hzz
-vmap [ vllzz
-noremap <leader>9 /(<cr>lzz
-noremap <leader>99 v /)<cr>hzz
+"find character
+"vmap [ vllzz
+noremap 99 /(<cr>zzl
+noremap <leader>9 cf)
+"noremap <leader>9 v /)<cr>hzz
 vnoremap 9 vllzz
 
-noremap ' /'<cr>lzz
-noremap <leader>' v /'<cr>hzz
-vnoremap ' vllzz
+nnoremap [ /[<cr>lzz
+nnoremap <leader>[ v /]<cr>hzz
+vnoremap [ vllzz
 
-nnoremap { /{<cr>lzz
-nnoremap {{ v /}<cr>hzz
+noremap { /{<cr>lzz
+nnoremap <leader>{ v /}<cr>hzz
 vnoremap { vllzz
 
-nnoremap " /"<cr>lzz
-nnoremap "" v/"<cr>hzz
+nnoremap '' /"<cr>lz
+nnoremap <leader>' v/"<cr>hzz
 vnoremap " vllzz
- 
-nnoremap < /<<cr>lzz
-nnoremap << v/><cr>hzz
-    
-noremap <leader>, /,<cr>lzz
-noremap <leader>= /=<cr> zz
-noremap <leader>. /\.<cr>lzz
-noremap <leader>/ /\/<cr>lzz
 
+"visual selection
 noremap <leader>v v0
 
-"blank_lines
+"blank lines
 nmap <leader>j o<cr> 
 nmap <leader>k <s-o><cr> 
  
-"remapping 
+"remapping saves etc
 nnoremap v <c-v>
+nnoremap <c-v> v$
 noremap <a-k> <s-o><return>
 noremap = {zz
 noremap - }zz
@@ -67,21 +64,27 @@ noremap <c-return> o
 noremap <a-2> "2$p
 noremap <F6> :w! <bar> :!python % <CR>
 noremap <F2> *<s-n> <bar> :set hlsearch<CR>n
-noremap <return> mpi
+nnoremap <leader><F2> "ryiw:%s/\<<c-R>r\>/
+"nnoremap <leader><F2> "ryiw:%s/\<<c-R>r\>//c<left><left>
+noremap <return> i
 noremap ; :
 nmap <c-e> :mkview<cr>:wq!<CR>
- 
+"nmap <c-e> :wq!<CR>
+nmap <leader>m :!bash /kivy_main.sh<cr>
+nmap <leader>w :w! python2.7_projects/
 inoremap <silent><Return> <ESC>:nohlsearch<CR>
 inoremap <c-cr> <CR>
-imap! <F6> :w! <bar> :!python % <CR> 
 imap <a-return> <return>
-nmap <silent> <Space> :set relativenumber!<cr>
 
 vmap <return> <s-i>
 
-"comment 
-vmap 3 <cr><cr>0v-k
-vmap 33 <return>#<return><s-v>-kzf
+"comment fold
+vmap 3 _)
+vmap 33 <return>#<return>zf-
+nmap <leader>3 _<return>#<cr>
+"nmap! <leader>33 _v)<return>#<return><s-v>)zf
+nmap <leader>33 _v)<return>#<return>v)zf
+nmap <leader>22 zov)x
 
 "register 
 nnoremap <leader>y "yyiw
@@ -90,77 +93,79 @@ nnoremap]y i<c-R>y<Esc>
 vnoremap ]y "yp
 vnoremap y "yy
 
-nnoremap <leader>u "uyiw
+nnoremap <leader>u "uye
 inoremap <leader>u <c-R>u
 nnoremap ]u i<c-R>u<Esc>
 vnoremap ]u "up
 vnoremap u "uy
 
-nnoremap <leader>i "iyiw
+nnoremap <leader>i "iye
 inoremap <leader>i <c-R>i
 nnoremap ]i i<c-R>i<Esc>
 vnoremap ]i "ip
 vnoremap i "iy
 
-nnoremap <leader>o "oyiw
+nnoremap <leader>o "oye
 inoremap <leader>o <c-R>o
-nnoremap ]o i<c-R>o<Esc> 
+nnoremap ]o i<c-R>o<Esc>
 vnoremap ]o "op
 vnoremap o "oy
 
-nnoremap <leader>p "pyiw
+nmap <leader>p oprint()<cr><cr>
 inoremap <leader>p <c-R>p
-nnoremap ]p i<c-R>p
-vnoremap ]p "pp 
+nnoremap ]p i<c-R>p<Esc>
+vnoremap ]p "pp
 vnoremap p "py
 
+"insert mode control
 imap <leader>h <Left>
 imap <leader>k <Up>
 imap <leader>j <Down>
 imap <leader>l <Right>
 imap <leader>x <Delete>
 
-"add_function
+"add function
+imap <Tab><Tab> <c-p>
 imap <leader>, <Right>, 
+imap <leader>; <cr>A:<c-return>
 imap <leader>9 ()<Left>
 imap <leader>0 ("")<Left><Left>
-imap <leader>[ []<Left>;
+imap <leader>[ []<Left>
 imap <leader>] [""]<Left><Left>
 imap <leader>' ""<Left>
 
-nmap <leader>2 (>-
-nmap <leader>q :call ()<Left><Left>
-nmap <leader>3 0<cr>#<cr>
-nmap <leader>w :w! /python2.7_projects/
-nmap <c-v> v$
+inoremap )( (<Esc>A)
+inoremap ][ [<Esc>A]
+inoremap }{ {<Esc>A}
 
 nnoremap <leader>r _"rywo<c-R>r
+nnoremap <leader>e _"ryw<s-o><c-R>r
+nmap <Tab><Tab> _<Return><Tab><Return>
 
-cmap <c-v> <Down>
-cmap <c-c> <Up>
-cmap <c-x> <Delete>
-
-"ydd_to_funtion 
-vnoremap ) )k 
+"add to funtion
 nnoremap ) )k
-nnoremap ( (jk
-    
-"file 
+nnoremap <silent> <Space> :set relativenumber!<cr>
+vnoremap ) )k
+
+"buffer
 nmap <c-b> :w! <bar> :b#<cr>
+nmap <silent> <Left> :bprevious<bar>:echo bufnr('%')<cr>
+nmap <silent> <Right> :bnext<bar>:echo bufnr('%')<cr>
+nmap <Up> :w!<cr>
+nmap <Down> :bd<cr>
+nmap <leader>f :w!<bar>:find 
 
-"start_vim
-source ~/vim/tkinter.vim
-source ~/vim/kivy.vim
-echo 'got a source from kivy.vim :call Kivyhelp() for more info'
-loadview
-find test.py
-find test.kv
-b1
-"exec 'set viminfo=%,' . &viminfo
+"start vim
+find  /python2.7_projects/main.py
+find  /python2.7_projects/main.kv
+exe 'b1'
+source /vim/kivy.vim
+source /vim/curses.vim
+"args **.py
+"args **.kv
 
-"Color_theme_adjusted_koehler 
+"Color theme adjusted koehler 
 hi Normal		  guifg=white  guibg=black
-hi Variable       term=bold  cterm=bold  ctermfg=cyan  guifg=cyan
 hi Scrollbar	  guifg=darkcyan guibg=cyan
 hi Menu			  guifg=black guibg=cyan
 hi SpecialKey	  term=bold  cterm=bold  ctermfg=darkred  guifg=Blue
@@ -188,9 +193,10 @@ hi Type			  term=underline  cterm=bold ctermfg=lightgreen  gui=bold  guifg=#60ff
 hi Error		  term=standout  ctermfg=red  ctermbg=black  guifg=Red	guibg=Black
 hi Todo			  term=standout  ctermfg=black	ctermbg=darkcyan  guifg=Blue  guibg=Yellow
 
-"python colors
 hi PythonSync	  ctermfg=grey
 hi PythonSpaceError       ctermbg=blue 
 hi PythonFunction ctermfg=green term=underline
 hi PythonInclude  ctermfg=blue
 hi PythonStatement        cterm=bold ctermfg=cyan
+
+"autocmd BufWinLeave *.* silent mkview 
